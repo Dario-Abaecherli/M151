@@ -1,0 +1,5 @@
+Ändert sich der Counter nachdem die erste Zeile auskommentiert wurde?
+    NEIN
+
+Wieso ändert er sich nicht?
+    Die Seite wird jedes mal neu aufgerugen, was den wert von {$anzahl_aufrufe} neu setzt.
