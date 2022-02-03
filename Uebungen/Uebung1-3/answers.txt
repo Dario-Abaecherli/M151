@@ -1,0 +1,20 @@
+Gehen Sie den Code durch und überlegen Sie Sich was auf jeder Zeile geschieht.
+    session wird gestartet
+    $anzahl_aufrufe wird auf 1 gesetzt
+    abfrage, ob session.$anzahl_aufrufe gesetzt ist
+
+Was bewirkt die Funktion session_start()?
+    es wird eine Session gestartet, die informationen über mehrere aufrufe hinweg speichert
+
+Überprüfen Sie mit dem Inspector ob Sie ein Session Cookie erhalten haben.
+    nein, da nur abgefragt wurde, ist kein cookie erstellt worden
+
+
+Session.php
+Was wird ausgegeben?
+    NULL
+
+Warum ist die Anzahl der Aufrufe nicht sichtbar?
+    
+
+Passen Sie die Datei an sodass die $_SESSION Konstante die Anzahl der Aufrufe enthält.
