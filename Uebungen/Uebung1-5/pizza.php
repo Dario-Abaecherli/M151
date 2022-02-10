@@ -14,7 +14,13 @@
         
         if($_POST['zutat'])
         {
-            array_push($zutaten, $_POST['zutat']);
+            $zutat = $_POST['zutat'];
+
+            if(!in_array($zutat, $zutaten))
+            {
+                array_push($zutaten, $_POST['zutat']);
+            }
+
         }
 
         echo "<ul>";
