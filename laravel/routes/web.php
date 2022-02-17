@@ -17,4 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/products', [\App\Http\Controllers\ProductController::class]);
+Route::get('/products', [\App\Http\Controllers\ProductController::class, 'products']);
+
+Route::get('/product/{id}', [\App\Http\Controllers\ProductController::class, 'product']);
