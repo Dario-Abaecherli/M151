@@ -6,5 +6,16 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    //
+    public function login()
+    {
+        return view("user");
+    }
+    public function register()
+    {
+
+    }
+    public function logout($id)
+    {
+
+    }
 }

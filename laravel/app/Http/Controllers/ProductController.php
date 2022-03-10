@@ -8,12 +8,15 @@ class ProductController extends Controller
 {
     public function product($id)
     {
-        dd($id);
+        $product = \App\Models\Product::find($id);
+
+        return view("product", ['product' => $product]);
     }
 
     public function products()
     {
         $products = \App\Models\Product::all();
-        dd($products);
+
+        return view("products", ['products' => $products]);
     }
 }
