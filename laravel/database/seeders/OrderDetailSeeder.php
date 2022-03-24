@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Product;
+use App\Models\Order_detail;
 
-class ProductSeeder extends Seeder
+class OrderDetailSeeder extends Seeder
 {
     /**
      * Run the database seeds.

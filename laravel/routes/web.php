@@ -25,8 +25,8 @@ Route::get('/cart/add/{id}', [\App\Http\Controllers\CartController::class, 'addC
 
 Route::get('/cart', [\App\Http\Controllers\CartController::class, 'cart']);
 
-Route::get('/user/login', [\App\Http\Controllers\UserController::class, 'login']);
+Route::get('/user/login', [\App\Http\Controllers\UserController::class, 'loginView']);
 
-Route::get('/user/register', [\App\Http\Controllers\UserController::class, 'register']);
+Route::get('/user/register', [\App\Http\Controllers\UserController::class, 'registerView']);
 
-Route::get('/user/logout/{id}', [\App\Http\Controllers\UserController::class, 'logout']);
+Route::get('/user/logout/{id}', [\App\Http\Controllers\UserController::class, 'logoutView']);

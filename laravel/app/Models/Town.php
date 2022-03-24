@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Town extends Model
 {
     use HasFactory;
 
-    function order_detail()
+    function user()
     {
-        return $this->hasMany(Order_detail::class);
+        return $this->hasMany(User::class);
     }
 }
