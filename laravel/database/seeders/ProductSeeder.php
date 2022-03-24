@@ -15,6 +15,11 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Product::create([
+            'name' => 'Ovomaltine Schockolade',
+            'stock_quantity' => 23,
+            'description' => 'Milchschokolade von Ovomaltine',
+            'price' => 2.50
+        ]);
     }
 }

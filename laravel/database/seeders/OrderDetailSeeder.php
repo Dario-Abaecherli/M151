@@ -15,6 +15,10 @@ class OrderDetailSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Order_detail::create([
+            'amount' => 3,
+            'product_id' => 1,
+            'order_id' => 1,
+        ]);
     }
 }

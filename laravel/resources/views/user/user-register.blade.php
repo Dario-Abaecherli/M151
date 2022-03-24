@@ -74,23 +74,36 @@
         </style>
     </head>
     <body>
-        <form action="action_page.php">
+        {{-- <form method="POST" action="{{ route('user.register')}}"> --}}
+        <form method="POST" action="/userregister">
+            @csrf
+            
             <div class="container">
               <h1>Register</h1>
-              <p>Please fill in this form to create an account.</p>
-              <hr>
+          
+              <label for="prename"><b>Vorname</b></label>
+              <input type="text" placeholder="Enter Prename" name="prename" required>
+
+              <label for="surname"><b>Surname</b></label>
+              <input type="text" placeholder="Enter Surname" name="surname" required>
           
               <label for="email"><b>Email</b></label>
               <input type="text" placeholder="Enter Email" name="email" id="email" required>
+
+              <label for="password"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" name="password" id="psw" required>
           
-              <label for="psw"><b>Password</b></label>
-              <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
-          
-              <label for="psw-repeat"><b>Repeat Password</b></label>
-              <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+              <label for="password-repeat"><b>Repeat Password</b></label>
+              <input type="password" placeholder="Repeat Password" name="password-repeat" id="psw-repeat" required>
               <hr>
-          
-              <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
+                
+              <label for="street"><b>Strasse</b></label>
+              <input type="text" placeholder="Enter Street" name="street" required>
+
+              <label for="house_number"><b>Hausnummer</b></label>
+              <input type="text" placeholder="Enter Housenumber" name="house_number" required>
+              <hr>
+
               <button type="submit" class="registerbtn">Register</button>
             </div>
           

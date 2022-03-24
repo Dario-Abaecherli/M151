@@ -3,30 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class CartController extends Controller
 {
     public function addCart($id)
     {
-        // $product = \App\Models\Product::find($id);
-        // session()->flush();
-
-
-        if(session($id)==null)
-        {
-            session()->put($id, 1);
-        }
         session()->increment($id);
-
+       
         return redirect("products");
     }
 
     public function cart()
     {
-        $cartItems = array();
+        $cartItems = session();
+        $items = Product::all();
 
-        $cartItems = session()->all();
-
-        return view("cart", ['cartItems' => $cartItems]);
+        return view("cart", ['cartItems' => $cartItems, 'items' => $items]);
     }
 }

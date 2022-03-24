@@ -21,9 +21,19 @@
         </style>
     </head>
     <body>
-        @foreach($cartItems as $item)
-            <?= var_dump($item) ?>
-            <br>
-        @endforeach
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Amount</th>
+                <th></th>
+            </tr>
+            @foreach($items as $item)
+                <tr>
+                    <td>{{$item['name']}}</td>
+                    <td>{{$cartItems->get($item['id'])}}</td>
+                    <td><a href="Remove/{{$item['id']}}">Remove</a></td>
+                </tr>
+            @endforeach
+        </table>
     </body>
 </html>

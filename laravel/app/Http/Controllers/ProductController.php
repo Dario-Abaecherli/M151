@@ -10,13 +10,13 @@ class ProductController extends Controller
     {
         $product = \App\Models\Product::find($id);
 
-        return view("product", ['product' => $product]);
+        return view("product/product", ['product' => $product]);
     }
 
     public function products()
     {
         $products = \App\Models\Product::all();
 
-        return view("products", ['products' => $products]);
+        return view("product/products", ['products' => $products]);
     }
 }

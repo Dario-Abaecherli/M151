@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Town;
 
 class TownSeeder extends Seeder
 {
@@ -14,6 +15,9 @@ class TownSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Town::create([
+            'name' => 'Ballwil',
+            'postal_code' => 6275,
+        ]);
     }
 }

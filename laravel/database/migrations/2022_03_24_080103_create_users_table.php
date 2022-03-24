@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('password');
             $table->string('salt', 50);
             $table->string('adress');
-            $talbe->integer('house_number');
+            $table->integer('house_number');
             $table->foreignId('town_id');
             $table->timestamps();
         });

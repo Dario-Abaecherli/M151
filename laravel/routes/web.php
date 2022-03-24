@@ -17,16 +17,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Product
 Route::get('/products', [\App\Http\Controllers\ProductController::class, 'products']);
-
 Route::get('/product/{id}', [\App\Http\Controllers\ProductController::class, 'product']);
 
+// Cart
 Route::get('/cart/add/{id}', [\App\Http\Controllers\CartController::class, 'addCart']);
-
 Route::get('/cart', [\App\Http\Controllers\CartController::class, 'cart']);
 
+// User
+Route::post('/userregister', [\App\Http\Controllers\UserController::class, 'register']);
+Route::post('/userlogin', [\App\Http\Controllers\UserController::class, 'login']);
 Route::get('/user/login', [\App\Http\Controllers\UserController::class, 'loginView']);
-
 Route::get('/user/register', [\App\Http\Controllers\UserController::class, 'registerView']);
-
 Route::get('/user/logout/{id}', [\App\Http\Controllers\UserController::class, 'logoutView']);
