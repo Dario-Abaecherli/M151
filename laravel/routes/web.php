@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+    // return redirect('/user/login');
 });
 
 // Product
@@ -22,8 +23,10 @@ Route::get('/products', [\App\Http\Controllers\ProductController::class, 'produc
 Route::get('/product/{id}', [\App\Http\Controllers\ProductController::class, 'product']);
 
 // Cart
-Route::get('/cart/add/{id}', [\App\Http\Controllers\CartController::class, 'addCart']);
+Route::post('/cart/add', [\App\Http\Controllers\CartController::class, 'addCart']);
 Route::get('/cart', [\App\Http\Controllers\CartController::class, 'cart']);
+Route::get('/cart/remove/{id}', [\App\Http\Controllers\CartController::class, 'removeCart']);
+Route::get('/cart/drop', [\App\Http\Controllers\CartController::class, 'dropCart']);
 
 // User
 Route::post('/userregister', [\App\Http\Controllers\UserController::class, 'register']);

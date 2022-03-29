@@ -7,11 +7,30 @@ use App\Models\Product;
 
 class CartController extends Controller
 {
-    public function addCart($id)
+    public function addCart(Request $request)
     {
-        session()->increment($id);
-       
+        $data = $request->all();
+        if(!session()->has($data['productId']))
+        {
+            session()->put($data['productId'], 0);
+        }
+
+        session()->increment($data['productId'], $data['amount']);
         return redirect("products");
+    }
+
+    public function removeCart($id)
+    {
+        session()->forget($id);
+        return redirect("cart");
+    }
+
+    public function dropCart()
+    {
+        $userId = session()->get('userId');
+        session()->flush();
+        session()->put('userId', $userId);
+        return redirect("cart");
     }
 
     public function cart()
