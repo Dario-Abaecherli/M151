@@ -19,7 +19,16 @@ class ProductSeeder extends Seeder
             'name' => 'Ovomaltine Schockolade',
             'stock_quantity' => 23,
             'description' => 'Milchschokolade von Ovomaltine',
-            'price' => 2.50
+            'price' => 2.50,
+            'imagePath' => 'images\ovomaltine.jpg'
+        ]);
+
+        Product::create([
+            'name' => 'Rivella Rot',
+            'stock_quantity' => 55,
+            'description' => 'Rivella Rot 250ml',
+            'price' => 1.80,
+            'imagePath' => 'images\rivellaRot.jpg'
         ]);
     }
 }

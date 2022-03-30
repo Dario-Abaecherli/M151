@@ -16,7 +16,7 @@
                 <form method="POST" action="/cart/add">
                     @csrf
 
-                    <input type="number" class="numberInput" name="amount" min="1" max="20">
+                    <input type="number" class="numberInput " name="amount" min="1" max="20">
               </td>
               <td>
                     <input type="hidden" name="productId" value="{{$product->id}}">

@@ -10,18 +10,18 @@ class CartController extends Controller
     public function addCart(Request $request)
     {
         $data = $request->all();
-        if(!session()->has($data['productId']))
-        {
-            session()->put($data['productId'], 0);
-        }
 
+        // dd($data['productId']);
         session()->increment($data['productId'], $data['amount']);
+
+        // dd(session()->get($data['productId']));
         return redirect("products");
     }
 
     public function removeCart($id)
     {
-        session()->forget($id);
+        if(session()->has($id)) session()->forget($id);
+        
         return redirect("cart");
     }
 
@@ -38,6 +38,17 @@ class CartController extends Controller
         $cartItems = session();
         $items = Product::all();
 
-        return view("cart", ['cartItems' => $cartItems, 'items' => $items]);
+        $itemList = [];
+
+        foreach($items as $item)
+        {
+            if($cartItems->has($item['id']))
+            {
+                $amount = $cartItems->get($item['id']);
+                array_push($itemList, ['name' => $item['name'], 'id' => $item['id'], 'amount' => $amount]);
+            }
+        }
+
+        return view("cart", ['itemList' => $itemList]);
     }
 }

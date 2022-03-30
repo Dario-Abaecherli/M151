@@ -9,6 +9,7 @@ class UserController extends Controller
 {
     public function loginView()
     {
+        if(session()->has('userId')) return redirect('products');
         return view("user/user-login");
     }
 
@@ -17,9 +18,13 @@ class UserController extends Controller
         return view("user/user-register");
     }
 
-    public function logoutView($id)
+    public function logoutView()
     {
-
+        if(session()->has('userId'))
+        {
+            session()->forget('userId');
+        }
+        return redirect('/user/login');
     }
 
     public function register(Request $request)

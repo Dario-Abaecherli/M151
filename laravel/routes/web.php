@@ -33,4 +33,4 @@ Route::post('/userregister', [\App\Http\Controllers\UserController::class, 'regi
 Route::post('/userlogin', [\App\Http\Controllers\UserController::class, 'login']);
 Route::get('/user/login', [\App\Http\Controllers\UserController::class, 'loginView']);
 Route::get('/user/register', [\App\Http\Controllers\UserController::class, 'registerView']);
-Route::get('/user/logout/{id}', [\App\Http\Controllers\UserController::class, 'logoutView']);
+Route::get('/user/logout', [\App\Http\Controllers\UserController::class, 'logoutView']);

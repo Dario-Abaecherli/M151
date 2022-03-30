@@ -19,6 +19,7 @@
                 <li><a href="/products">Products</a></li>
                 <li><a href="/cart">Cart</a></li>
                 <li style="float:right"><a class="active" href="/user/login">Login</a></li>
+                <li style="float:right"><a class="active" href="/user/logout">Logout</a></li>
             </ul> 
         </nav>
     </head>

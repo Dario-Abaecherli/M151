@@ -1,5 +1,10 @@
 * {box-sizing: border-box}
 
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
 nav {
     position: fixed;
     bottom: 0;

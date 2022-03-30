@@ -19,6 +19,7 @@ return new class extends Migration
             $table->double('stock_quantity', 6, 2);
             $table->text('description');
             $table->decimal('price', 8, 2);
+            $table->string('imagePath');
             $table->timestamps();
         });
     }

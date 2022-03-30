@@ -5,14 +5,12 @@
                 <th>Amount</th>
                 <th></th>
             </tr>
-            @foreach($items as $item)
-                @if($cartItems->has($item['id']))
+            @foreach($itemList as $item)
                 <tr>
                     <td>{{$item['name']}}</td>
-                    <td>{{$cartItems->get($item['id'])}}</td>
+                    <td>{{$item['amount']}}</td>
                     <td><a href="cart/remove/{{$item['id']}}">Remove</a></td>
                 </tr>
-                @endif
             @endforeach
         </table>
         <a href="cart/drop">Drop the Cart (clear all)</a>
