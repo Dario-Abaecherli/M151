@@ -15,10 +15,6 @@ class OrderSeeder extends Seeder
      */
     public function run()
     {
-        Order::create([
-            'order_date' => '2022-04-03',
-            'description' => 'bestellung',
-            'user_id' => 1,
-        ]);
+        //
     }
 }

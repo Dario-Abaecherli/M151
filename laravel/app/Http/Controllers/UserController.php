@@ -26,20 +26,24 @@ class UserController extends Controller
         if (session()->has('userId')) {
             $userID = session()->get('userId');
 
-            $order = Order::create([
-                'order_date' => date("Y-m-d"),
-                'description' => 'bestellung',
-                'user_id' => $userID
-            ]);
+            // Check if userId allready has an Order, id yes update instead of create one
+            if (Order::where('user_id', '=', $userID)->first() === null) {
+                Order::create([
+                    'order_date' => date("Y-m-d"),
+                    'description' => 'bestellung',
+                    'user_id' => $userID,
+                ]);
+            }
+            $order = Order::where('user_id', '=', $userID)->first();
 
+            // Get Produts form DB
             $products = Product::all();
-
             foreach ($products as $product) {
                 if (session()->has('product' . $product->id)) {
                     Order_detail::create([
                         'amount' => session()->get('product' . $product->id),
                         'product_id' => $product->id,
-                        'order_id' => $order->id
+                        'order_id' => $order->id,
                     ]);
                 }
             }
@@ -67,7 +71,7 @@ class UserController extends Controller
                 'town_id' => 1,
             ]);
             session()->put('userId', $user->id);
-            $this->loadCartFromDB();
+            $this->loadCartFromDB($user->id);
             return redirect('/products');
         } else {
             return redirect('/login');
@@ -84,7 +88,7 @@ class UserController extends Controller
         if ($user) {
             if (password_verify($data['password'], $user->password)) {
                 session()->put('userId', $user->id);
-                $this->loadCartFromDB();
+                $this->loadCartFromDB($user->id);
                 return redirect('/products');
             } else {
                 return redirect('/login');
@@ -94,8 +98,14 @@ class UserController extends Controller
         }
     }
 
-    private function loadCartFromDB()
+    private function loadCartFromDB($userId)
     {
-        // Load Cart from DB
+        if (Order::where('user_id', '=', $userId)->first()) {
+            $orders = Order::where('user_id', '=', $userId)->first();
+            foreach ($orders->order_detail()->get() as $order) {
+                $productId = $order->product_id;
+                session()->put('product' . $productId, $order->amount);
+            }
+        }
     }
 }
