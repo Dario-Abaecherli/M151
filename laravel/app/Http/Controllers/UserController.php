@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\Order_detail;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -20,10 +23,27 @@ class UserController extends Controller
 
     public function logout()
     {
-        $items = session()->all();
+        if (session()->has('userId')) {
+            $userID = session()->get('userId');
 
-        
+            $order = Order::create([
+                'order_date' => date("Y-m-d"),
+                'description' => 'bestellung',
+                'user_id' => $userID
+            ]);
 
+            $products = Product::all();
+
+            foreach ($products as $product) {
+                if (session()->has('product' . $product->id)) {
+                    Order_detail::create([
+                        'amount' => session()->get('product' . $product->id),
+                        'product_id' => $product->id,
+                        'order_id' => $order->id
+                    ]);
+                }
+            }
+        }
         session()->flush();
         return redirect('/login');
     }
@@ -42,13 +62,12 @@ class UserController extends Controller
                 'name' => $data['firstname'],
                 'email' => $data['email'],
                 'password' => $password,
-                'salt' => '1234567890',
                 'adress' => $data['street'],
                 'house_number' => $data['house_number'],
                 'town_id' => 1,
             ]);
-
             session()->put('userId', $user->id);
+            $this->loadCartFromDB();
             return redirect('/products');
         } else {
             return redirect('/login');
@@ -65,6 +84,7 @@ class UserController extends Controller
         if ($user) {
             if (password_verify($data['password'], $user->password)) {
                 session()->put('userId', $user->id);
+                $this->loadCartFromDB();
                 return redirect('/products');
             } else {
                 return redirect('/login');
@@ -72,5 +92,10 @@ class UserController extends Controller
         } else {
             return redirect('/register');
         }
+    }
+
+    private function loadCartFromDB()
+    {
+        // Load Cart from DB
     }
 }

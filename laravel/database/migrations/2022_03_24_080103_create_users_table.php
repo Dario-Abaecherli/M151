@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('name', 40);
             $table->string('email', 70)->unique();
             $table->text('password');
-            $table->string('salt', 50);
             $table->string('adress');
             $table->integer('house_number');
             $table->foreignId('town_id');
