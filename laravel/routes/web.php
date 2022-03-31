@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-    // return redirect('/user/login');
+    // return redirect('/login');
 });
 
 // Product
@@ -29,8 +29,8 @@ Route::get('/cart/remove/{id}', [\App\Http\Controllers\CartController::class, 'r
 Route::get('/cart/drop', [\App\Http\Controllers\CartController::class, 'dropCart']);
 
 // User
-Route::post('/userregister', [\App\Http\Controllers\UserController::class, 'register']);
-Route::post('/userlogin', [\App\Http\Controllers\UserController::class, 'login']);
-Route::get('/user/login', [\App\Http\Controllers\UserController::class, 'loginView']);
-Route::get('/user/register', [\App\Http\Controllers\UserController::class, 'registerView']);
-Route::get('/user/logout', [\App\Http\Controllers\UserController::class, 'logoutView']);
+Route::post('/register', [\App\Http\Controllers\UserController::class, 'register']);
+Route::post('/login', [\App\Http\Controllers\UserController::class, 'login']);
+Route::get('/login', [\App\Http\Controllers\UserController::class, 'loginView']);
+Route::get('/register', [\App\Http\Controllers\UserController::class, 'registerView']);
+Route::get('/logout', [\App\Http\Controllers\UserController::class, 'logout']);

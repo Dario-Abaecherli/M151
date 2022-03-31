@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     public function loginView()
     {
-        if(session()->has('userId')) return redirect('products');
+        if (session()->has('userId')) return redirect('products');
         return view("user/user-login");
     }
 
@@ -18,13 +18,14 @@ class UserController extends Controller
         return view("user/user-register");
     }
 
-    public function logoutView()
+    public function logout()
     {
-        if(session()->has('userId'))
-        {
-            session()->forget('userId');
-        }
-        return redirect('/user/login');
+        $items = session()->all();
+
+        
+
+        session()->flush();
+        return redirect('/login');
     }
 
     public function register(Request $request)
@@ -34,8 +35,7 @@ class UserController extends Controller
         // PASSWORT Verschlüsseln
         $password = password_hash($data['password'], PASSWORD_DEFAULT);
 
-        if(User::where('email', '=', $data['email'])->first() === null)
-        {
+        if (User::where('email', '=', $data['email'])->first() === null) {
             // INSERT USER
             $user = User::create([
                 'surname' => $data['surname'],
@@ -50,12 +50,9 @@ class UserController extends Controller
 
             session()->put('userId', $user->id);
             return redirect('/products');
+        } else {
+            return redirect('/login');
         }
-        else
-        {
-            return redirect('/user/login');
-        }
-        
     }
 
     public function login(Request $request)
@@ -65,20 +62,15 @@ class UserController extends Controller
         // Check for user
         $user = User::where('email', $data['email'])->first();
 
-        if($user)
-        {
+        if ($user) {
             if (password_verify($data['password'], $user->password)) {
                 session()->put('userId', $user->id);
                 return redirect('/products');
+            } else {
+                return redirect('/login');
             }
-            else
-            {
-                return redirect('/user/login');
-            }
-        }
-        else
-        {
-            return redirect('/user/register');
+        } else {
+            return redirect('/register');
         }
     }
 }
