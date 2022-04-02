@@ -3,7 +3,7 @@
         <tr>
             <th>Name</th>
             <th>Amount</th>
-            <th></th>
+            <th>Remove</th>
         </tr>
         @foreach($itemList as $item)
         <tr>

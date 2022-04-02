@@ -24,8 +24,10 @@
             <li><a href="/products">Products</a></li>
             @if(session()->has('userId'))
             <li><a href="/cart">Cart</a></li>
+            <li><a href="/orders">Orders</a></li>
             <li style="float:right"><a class="active" href="/logout">Logout</a></li>
             @else
+            <li style="float:right"><a class="active" href="/register">Register</a></li>
             <li style="float:right"><a class="active" href="/login">Login</a></li>
             @endif
         </ul>
